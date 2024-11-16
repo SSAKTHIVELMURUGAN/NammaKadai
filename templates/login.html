@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <title>Namma Kadai</title>
+</head>
+
+<body>
+    <!-- redirect to home page wherever in page -->
+    <div class="logo"><a href="{{ url_for('home') }}">Namma Kadai</a></div>
+
+    <!-- flash message -->
+     {% with messages = get_flashed_messages(with_categories=false) %}
+     {% if messages %}
+        <div class = "flash-messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+     {% endif %}
+     {% endwith %}
+
+
+    <div class="login-container">
+        <div class="login-heading">
+            <h1>Login</h1>
+            <h4>Don't have account? <a href="{{ url_for('authentication.signup') }}">Sign Up</a></h4>
+        </div>
+
+        <form action="{{ url_for('authentication.login') }}" method="post">
+            <div>
+                <label class="form-label">Access Code </label>
+                <input type="text" name="company_access_code" id="input_field" required>
+            </div>
+            <div>
+                <label class="form-label">Email ID </label>
+                <input type="email" name="company_email" id="input_field" required>
+            </div>
+            <div>
+                <label class="form-label">Password</label>
+                <input type="password" name="company_password" id="input_field" required>
+            </div>
+            <div>
+                <button type="submit" id="btn">Login</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

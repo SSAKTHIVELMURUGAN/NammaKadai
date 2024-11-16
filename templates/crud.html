@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/purchase.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <title>Namma Kadai</title>
+</head>
+
+<body>
+    <!-- redirect to home page wherever in page -->
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a href="{{ url_for('home') }}">Namma Kadai</a></div>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('purchase.purchaseItem') }}">Purchase</a></li>
+                <li><a href="{{ url_for('sale.saleItem') }}">Sale</a></li>
+                <li><a href="{{ url_for('list_history') }}">History</a></li>
+                <form action="{{ url_for('authentication.logout') }}" method="GET">
+                    <button type="submit" id="logout-btn">Logout</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- flash message -->
+     {% with messages = get_flashed_messages(with_categories=false) %}
+     {% if messages %}
+        <div class = "flash-messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+     {% endif %}
+     {% endwith %}
+     
+     <div class="edit-form">
+        <form action="{{ url_for('crud.edit_operation',item_name=item.item_name) }}" method="post">
+            <h1> Item Details</h1>
+            <div>
+                <label class="form-label">Item Name </label>
+                <input type="text" name="item_name" id="input_field" value="{{ item['item_name'] }}"  required>
+            </div>
+            <div>
+                <label class="form-label">Quantity </label>
+                <input type="number" name="qty" id="input_field" value="{{ item['remaining_quantity'] }}" required>
+            </div>
+            <div>
+                <label class="form-label">Rate on Item</label>
+                <input type="number" name="rate" id="input_field" value="{{ item['rate'] }}"  required> 
+            </div>
+            <div>
+                <button type="submit" id="btn">Save</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

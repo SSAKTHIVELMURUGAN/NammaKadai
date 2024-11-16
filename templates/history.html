@@ -1,0 +1,87 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <title>Namma Kadai</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a href="{{ url_for('home') }}">Namma Kadai</a></div>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('purchase.purchaseItem') }}">Purchase</a></li>
+                <li><a href="{{ url_for('sale.saleItem') }}">Sale</a></li>
+                <li><a href="{{ url_for('list_history') }}">History</a></li>
+                <form action="{{ url_for('authentication.logout') }}" method="GET">
+                    <button type="submit" id="logout-btn">Logout</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=false) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <!-- Display purchase the item  -->
+     <h1>Purchase History</h1>
+    <div class="item-table">
+        <table>
+            <tr>
+                <th>S.NO</th>
+                <th>Item Name</th>
+                <th>Time Stamp</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+            {% for purchase_item in purchase_list %}
+            <tr>
+                <td>{{ purchase_item['purchase_id'] }}</td> <!-- item_id -->
+                <td>{{ purchase_item['purchase_item_name'] }}</td> <!-- item_name -->
+                <td>{{ purchase_item['timestamp'] }}</td> <!-- timestamp -->
+                <td>{{ purchase_item['quantity'] }}</td> <!-- timestamp -->
+                <td>{{ purchase_item['rate'] }}</td> <!-- timestamp -->
+                <td>{{ purchase_item['amount'] }}</td> <!-- timestamp -->
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+        <!-- Display sale the item  -->
+    <h1>Sale History</h1>
+    <div class="item-table">
+        <table>
+            <tr>
+                <th>S.NO</th>
+                <th>Item Name</th>
+                <th>Time Stamp</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+            {% for sale_item in sale_list %}
+            <tr>
+                <td>{{ sale_item['sale_id'] }}</td> <!-- item_id -->
+                <td>{{ sale_item['sale_item_name'] }}</td> <!-- item_name -->
+                <td>{{ sale_item['timestamp'] }}</td> <!-- timestamp -->
+                <td>{{ sale_item['quantity'] }}</td> <!-- timestamp -->
+                <td>{{ sale_item['rate'] }}</td> <!-- timestamp -->
+                <td>{{ sale_item['amount'] }}</td> <!-- timestamp -->
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

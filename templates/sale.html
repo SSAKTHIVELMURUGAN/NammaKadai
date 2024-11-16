@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sale.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <title>Namma Kadai</title>
+</head>
+
+<body>
+  
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a href="{{ url_for('home') }}">Namma Kadai</a></div>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('purchase.purchaseItem') }}">Purchase</a></li>
+                <li><a href="{{ url_for('sale.saleItem') }}">Sale</a></li>
+                <li><a href="{{ url_for('list_history') }}">History</a></li>
+                <form action="{{ url_for('authentication.logout') }}" method="GET">
+                    <button type="submit" id="logout-btn">Logout</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- flash message -->
+     {% with messages = get_flashed_messages(with_categories=false) %}
+     {% if messages %}
+        <div class = "flash-messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+     {% endif %}
+     {% endwith %}
+   
+    <!-- Sale Form -->
+    <div class="item-table">
+        <form action="{{ url_for('sale.saleItem') }}" method="POST">
+            <table>
+                <tr>
+                    <th>Select</th>
+                    <th>Item Name</th>
+                    <th>Qty in Stock</th>
+                    <th>Purchase Rate</th>
+                    <th>Sale Qty</th>
+                    <th>Sale Rate</th>
+                    <!-- <th>Remove</th> -->
+                </tr>
+                {% for item in item_list %}
+                <tr id="item-{{ item['item_id'] }}">
+                    <td><input type="checkbox" name="item_{{ item.item_id }}"></td><!-- item_id -->
+                    <td>{{ item['item_name'] }}</td> <!-- item_name -->
+                    <td>{{ item['remaining_quantity'] }}</td> <!-- remaining_quantity -->
+                    <td>{{ item['rate'] }}</td>
+                    <td>
+                        <input type="number" name="sale_qty{{ item['item_id'] }}" id="input_field" min="0">
+                    </td>
+                    <td>
+                        <input type="number" name="sale_rate{{ item['item_id'] }}" id="input_field" min="0">
+                    </td>
+                    <!-- <td>
+                        <button type="button" class="delete-btn" data-item-id="{{ item.item_id }}">Delete</button>
+                    </td> -->
+                </tr>
+                {% endfor %}
+            </table>
+            <button type="submit" id ="btn">Process Sale</button>
+        </form>
+    </div>
+    
+</body>
+
+</html>
