@@ -151,7 +151,7 @@ Sample logs while running the application:
 
 
 ### HTTP Status Codes:
-- **200 (OK):** Everything is working fine. ✅  
+- **200 (OK):** Everything is working fine. 
 - **302 (Found):** Temporary redirection to another URL.  
 - **304 (Not Modified):** Resource hasn’t changed since the last request.  
 - **400 (Bad Request):** The server couldn’t understand the request (e.g., invalid syntax).  
