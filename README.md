@@ -73,12 +73,10 @@ On the sale page:
 ---
 
 ## History Page
+# Handwritten Notes
 
-![History Screenshot](https://drive.google.com/uc?id=1UQWNfpeRPB9hIQFd26hC7JNtutdxSmFl)
+![Handwritten Notes Preview](https://drive.google.com/uc?id=1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL)
 
-The history page displays purchase and sale transactions, handled by `app.py` using the `list_history()` function from the `Purchase` and `Sale` tables.
-
----
 
 ## Edit/Remove Options
 
