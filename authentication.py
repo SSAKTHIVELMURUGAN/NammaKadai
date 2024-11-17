@@ -2,7 +2,6 @@ from flask import Flask,render_template,Blueprint,session,request, url_for,curre
 from werkzeug.security import generate_password_hash, check_password_hash
 authentication = Blueprint('authentication',__name__)
 
-
 @authentication.route("/signup",methods=['POST','GET'])
 def signup():
     if request.method == 'POST':
@@ -29,7 +28,7 @@ def signup():
         cur.execute(sql,(id,name,email,password,id,))
         current_app.mysql.connection.commit()
         cur.close()
-        flash("Signup successful! Welcome to the home page.", "success")
+        flash("Signup successful!.", "success")
         flash(f"Please remember your permanent access code {id}", "info")
         return redirect(url_for('home')) 
    
@@ -74,6 +73,8 @@ def logout():
 def id_generate():
     str1 = "NK"
     email = request.form['company_email']
+    name = request.form['company_name']
     val= sum(ord(c) for c in email)
+    val= sum(ord(c) for c in name)
     companyId = str1+str(val)
     return companyId

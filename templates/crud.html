@@ -41,16 +41,16 @@
         <form action="{{ url_for('crud.edit_operation',item_name=item.item_name) }}" method="post">
             <h1> Item Details</h1>
             <div>
-                <label class="form-label">Item Name </label>
-                <input type="text" name="item_name" id="input_field" value="{{ item['item_name'] }}"  required>
+                <label class="edit-form-label">Item Name </label>
+                <input type="text" name="item_name" id="edit_input_field" value="{{ item['item_name'] }}"  required>
             </div>
             <div>
-                <label class="form-label">Quantity </label>
-                <input type="number" name="qty" id="input_field" value="{{ item['remaining_quantity'] }}" required>
+                <label class="edit-form-label">Quantity </label>
+                <input type="number" name="qty" id="edit_input_field" value="{{ item['remaining_quantity'] }}" required>
             </div>
             <div>
-                <label class="form-label">Rate on Item</label>
-                <input type="number" name="rate" id="input_field" value="{{ item['rate'] }}"  required> 
+                <label class="edit-form-label">Rate on Item</label>
+                <input type="number" name="rate" id="edit_input_field" value="{{ item['rate'] }}"  required> 
             </div>
             <div>
                 <button type="submit" id="btn">Save</button>

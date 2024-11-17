@@ -25,7 +25,7 @@
             </ul>
         </div>
     </nav>
-
+ 
     <!-- flash message -->
      {% with messages = get_flashed_messages(with_categories=false) %}
      {% if messages %}
@@ -57,10 +57,10 @@
                     <td>{{ item['remaining_quantity'] }}</td> <!-- remaining_quantity -->
                     <td>{{ item['rate'] }}</td>
                     <td>
-                        <input type="number" name="sale_qty{{ item['item_id'] }}" id="input_field" min="0">
+                        <input type="number" name="sale_qty{{ item['item_id'] }}" id="table_field" min="0">
                     </td>
                     <td>
-                        <input type="number" name="sale_rate{{ item['item_id'] }}" id="input_field" min="0">
+                        <input type="number" name="sale_rate{{ item['item_id'] }}" id="table_field" min="0">
                     </td>
                     <!-- <td>
                         <button type="button" class="delete-btn" data-item-id="{{ item.item_id }}">Delete</button>

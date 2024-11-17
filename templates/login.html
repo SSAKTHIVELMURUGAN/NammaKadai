@@ -24,20 +24,19 @@
      {% endif %}
      {% endwith %}
 
-
-    <div class="login-container">
+<div class="login-container">
         <div class="login-heading">
             <h1>Login</h1>
-            <h4>Don't have account? <a href="{{ url_for('authentication.signup') }}">Sign Up</a></h4>
+            <h4>Don't have an account? <a href="{{ url_for('authentication.signup') }}">Sign Up</a></h4>
         </div>
 
         <form action="{{ url_for('authentication.login') }}" method="post">
             <div>
-                <label class="form-label">Access Code </label>
+                <label class="form-label">Access Code</label>
                 <input type="text" name="company_access_code" id="input_field" required>
             </div>
             <div>
-                <label class="form-label">Email ID </label>
+                <label class="form-label">Email ID</label>
                 <input type="email" name="company_email" id="input_field" required>
             </div>
             <div>

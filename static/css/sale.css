@@ -17,10 +17,18 @@
     margin-bottom: 30px;
     padding: 10px;
     width: 100%;
+    
 }
 
 .sale-heading {
     padding-right: 30px;
+}
+
+#table_field {
+    width: 100px; 
+    padding: 8px; 
+    font-size: 14px; 
+    border-radius: 4px;
 }
 
 #btn{

@@ -75,13 +75,13 @@ def saleItem():
                         else:
                         #if not in purchase
                             flash("Please purchase it","warning")
-          
-                
+            else:
+                flash("Please click atleast any one item")
+            
         if sale_sucess:
             flash("Saled successfully","success")
             return redirect(url_for('sale.saleItem'))
         
-        flash("Please click atleast any one item")
         
     user_id = session.get('company_id')
     cur = current_app.mysql.connection.cursor()

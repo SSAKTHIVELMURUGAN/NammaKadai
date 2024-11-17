@@ -4,7 +4,7 @@
     align-items: center;
     padding: 20px;   
 }
-
+ 
 .login-heading {
     padding-right: 90px;
 }
@@ -13,6 +13,7 @@ form{
     padding-top: 100px;
     max-width: 400px;
 }
+
 .form-label{
     display: inline-table;
     margin-bottom: 5px;
@@ -29,6 +30,7 @@ form{
     padding: 10px 15px;
     color: aliceblue;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .logo a {

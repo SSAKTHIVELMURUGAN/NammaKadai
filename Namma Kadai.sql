@@ -10,12 +10,6 @@ create table CompanyDetails(
 	access_code varchar(10) unique not null
 );
 
-select * from CompanyDetails;
-
--- drop table Item;
-
--- truncate table CompanyDetails;
-
 create table Item(
 	item_id int auto_increment not null primary key,
     item_name VARCHAR(100) NOT NULL unique,
@@ -55,19 +49,10 @@ create table Balance(
 	foreign key(company_id) REFERENCES CompanyDetails(company_id)
 );
 
-select * from Balance;
-select * from Sale;
-select * from Purchase;
-select * from Item;
-select * from CompanyDetails;
+-- select * from Balance;
+-- select * from Sale;
+-- select * from Purchase;
+-- select * from Item;
+-- select * from CompanyDetails;
 
-use NammaKadai;
-
--- truncate table Balance;
--- truncate table Sale;
--- truncate table Purchase;
--- truncate table Item;
--- truncate table CompanyDetails;
 ALTER TABLE Item ADD COLUMN is_active BOOLEAN DEFAULT 1;
-
-select balance from Item where company_id="NK1595" and item_name="pen";
