@@ -1,136 +1,154 @@
-# Namma Kadai Application
+# Application Overview
 
-## Running the Application
+It will run on the port `5000` at [http://localhost:5000](http://localhost:5000).  
+Here, I use MySQL as the database.
 
-To run the application, use the following commands:
+## Sign-Up and Login Page
 
-```bash
-./env/Scripts/activate
-python app.py
-```
-The application will run on port 5000. You can access it at http://localhost:5000.
+![Sign-Up and Login Page](https://drive.google.com/uc?id=1vgINmbq0x3dQ3Oa0tSVLllN3JbUF4SZp)  
+![Another Sign-Up Screenshot](https://drive.google.com/uc?id=1qj_RogBHb1soFGsuLtgIJSVxYUClLjfO)  
 
-This application uses MySQL as the database.
+**Note:** The access code is required to log in. Without the access code, login is not possible.
 
-### Features
-Authentication: Sign-Up and Login
-The authentication process is handled by authentication.py.
-Key functionalities include:
-Sign-Up:
-Ensures the email is unique using check_email.
-Displays the following flash messages:
-flash("Signup successful!", "success")
-flash("Please remember your permanent access code {id}", "info")
-Login:
-Verifies the email, password, and access code.
-Flash messages:
-flash("Invalid Password or Access Code", "error")
-flash("Please register", "danger")
-Note:
-The access code is generated using id_generate() by summing values in the email and company name.
-The access code is prefixed with "NK" (e.g., NK11025, where NK stands for "Namma Kadai").
+### Authentication Logic
+- **Sign-Up:**  
+  - The `authentication.py` script handles sign-up and login management.  
+  - If an already-registered person tries to register again, it checks the email using `check_email`.  
+  - If not registered, it displays a flash message:  
+    - `flash("Signup successful!.", "success")`  
+    - `flash(f"Please remember your permanent access code {id}", "info")`
 
-Screenshots:
-![screenshot24](https://drive.google.com/file/d/1vgINmbq0x3dQ3Oa0tSVLllN3JbUF4SZp/view)
-![screenshot22](https://drive.google.com/file/d/1qj_RogBHb1soFGsuLtgIJSVxYUClLjfO/view?usp=drive_link)
+- **Login:**  
+  - It checks if the person is registered and verifies the access code, email, and password.  
+  - Displays appropriate flash messages:  
+    - `flash("Invalid Password or Access Code", "error")`  
+    - `flash("Please register", "danger")`
 
-Home Page
-The home page allows users to add balance for investment.
+### Access Code Generation
+The access code is generated using `id_generate()` by summing the values in the email and company name.  
+It must be unique with the prefix "NK" (e.g., `NK11025` where `NK` stands for **Namma Kaddai**).
 
-Managed by app.py and stored in the Balance Table (MySQL).
-Flash message: flash("Balance is added successfully!", "success")
-Screenshots:
+---
 
-Purchase Page
-The purchase page allows users to add items for purchase.
-Users need to enter the item name, quantity, and rate per item.
-This functionality is handled by purchase.py.
+## Home Page
 
-Validations:
-Quantity and rate cannot be negative.
-If the balance goes below zero, a warning is displayed:
-flash("Your balance is Zero", "warning")
-The system allows merchants to purchase items even if the balance is negative, ensuring merchant-friendly functionality.
+![Home Page Screenshot 1](https://drive.google.com/uc?id=1fpmUcBWTzA2MevYVeEm2P6_1K6RfqyKZ)  
+![Home Page Screenshot 2](https://drive.google.com/uc?id=1U6eLpxjegc0Ds1UzsocbwO_tSQLcjtdR)
 
-Screenshots:
+On the homepage:
+- You can add a balance for investment, handled by `app.py` and stored in the `Balance` table in MySQL.  
+- Displays a flash message:  
+  - `flash("Balance is added successfully!", "success")`
 
-Sale Page
-The sale page lists all purchased items. Users can:
+---
 
-Select items using checkboxes.
-Enter the rate and quantity for sale.
-Key features:
+## Purchase Page
 
-Validates that items exist in the purchased list.
-Ensures the quantity is above zero and doesn’t exceed purchased limits.
-If valid, completes the sale and displays:
-flash("Successfully sold!", "success")
-Screenshots:
+![Purchase Screenshot 1](https://drive.google.com/uc?id=1IIdOmtDeODfF8mM6Y33UWVU3lFF72FyV)  
+![Purchase Screenshot 2](https://drive.google.com/uc?id=1Dxe4bSFDKrdgJ0WxlOhc9UDvgswVVFPt)
 
-History Page
-The history page displays purchase and sale transaction details.
-This functionality is managed by list_history() in app.py.
+On the purchase page:
+- Add items by specifying the item name, quantity, and rate.  
+- Logic is managed by `purchase.py`:  
+  - Quantity and rate cannot be negative.  
+  - If the balance goes below zero, it shows a warning:  
+    - `flash("Your balance is Zero", "warning")`  
+  - Negative balance is allowed for merchants to facilitate tracking (similar to bank overdrafts).
 
-Screenshot:
+---
 
-Edit and Remove Options
-The home page includes options to edit or remove items:
+## Sale Page
 
-Edit: Updates item rate and quantity in the Item Table.
-Balance changes are tracked.
-Remove: Deletes the item from the table and increments the balance.
-These features are managed by crud.py.
+![Sale Page Screenshot 1](https://drive.google.com/uc?id=1YDnIiKQhII0O7MksRjJwQ4A-VxTjprME)  
+![Sale Page Screenshot 2](https://drive.google.com/uc?id=1JDr9_yavJ8qTzG0FWh9KsW7f4_I-4poe)
 
-Helper Functions
-helper.py manages balance updates for tasks like:
+On the sale page:
+- List all purchased items.  
+- Select items using checkboxes and sell them by entering the rate and quantity.  
+- Logic managed by `sale.py`:  
+  - Ensures the item exists in both the purchase and item lists.  
+  - Quantity must be positive and within the purchased limit.  
+  - Displays appropriate flash messages for success or errors.
 
-Edit
-Delete
-Purchase
-Sale
-Balance changes are tracked in the Balance Table.
+---
 
-Database Design
-The application uses a MySQL database named NammaKadai.
+## History Page
 
-Tables:
-CompanyDetails:
+![History Screenshot](https://drive.google.com/uc?id=1UQWNfpeRPB9hIQFd26hC7JNtutdxSmFl)
 
-Stores company name, email, password (encrypted), and access code.
-Used for authentication.
-Item:
+The history page displays purchase and sale transactions, handled by `app.py` using the `list_history()` function from the `Purchase` and `Sale` tables.
 
-Stores purchased items linked to a company (foreign key).
-Balance:
+---
 
-Tracks balance changes with codes:
-P: Purchase
-I: Invested
-S: Sale
-CRI: Rate increased during edit
-CRD: Rate decreased during edit
-D: Item removed
-Purchase:
+## Edit/Remove Options
 
-Stores purchase details (timestamp, quantity, rate, amount).
-Sale:
+The homepage provides options to edit or remove items if mistakes are made:
+- **Edit:**  
+  - Updates the rate and quantity in the `Item` table.  
+  - Adjusts the balance accordingly.  
+  - Handled by `crud.py`.
 
-Stores sale details (timestamp, quantity, rate, amount).
-Handwritten Database Design:
+- **Remove:**  
+  - Prompts for confirmation before deletion.  
+  - Removes the item from the `Item` table and adjusts the balance.
 
-Understanding Terminal Logs
-During execution, the terminal logs HTTP requests and responses, like:
+---
 
-POST /auth/signup HTTP/1.1" 302 -
-GET / HTTP/1.1" 200 -
-GET /static/css/login.css HTTP/1.1" 304 -
-HTTP Status Codes:
-200 (OK): Request was successful. ✅
-302 (Found): Temporary redirection.
-304 (Not Modified): Cached resource unchanged.
-400 (Bad Request): Invalid request syntax.
-401 (Unauthorized): Authentication failed.
-404 (Not Found): Resource doesn’t exist.
-500 (Internal Server Error): Server-side issue.
-These logs are helpful for debugging and ensuring proper app functionality. 
- 
+## Helper Script
+
+`helper.py` updates the balance after every action (edit, delete, purchase, and sale) and tracks changes in the `Balance` table.
+
+---
+
+## Database Design
+
+**Database Name:** `NammaKadai`
+
+### Tables:
+1. **CompanyDetails:**  
+   - Stores company name, email ID, password (encrypted), and access code.  
+   - Used for authentication.
+
+2. **Item:**  
+   - Stores purchased items with the corresponding company ID (foreign key).
+
+3. **Balance:**  
+   - Tracks balance changes (`P`, `I`, `S`, `CRI`, `CRD`, `D`):  
+     - `P` - Purchase  
+     - `I` - Investment  
+     - `S` - Sale  
+     - `CRI` - Rate increased during edit  
+     - `CRD` - Rate decreased during edit  
+     - `D` - Deleted item  
+
+4. **Purchase:**  
+   - Stores purchase details with timestamps.
+
+5. **Sale:**  
+   - Stores sale details with timestamps.
+
+**Document for DB Plan:**  
+[Handwritten Notes](https://drive.google.com/uc?id=1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL)
+
+---
+
+## Terminal Logs
+
+Sample logs while running the application:
+- "POST /auth/signup HTTP/1.1" 302 
+- "GET / HTTP/1.1" 200 
+- "GET /static/css/login.css HTTP/1.1" 304
+- "GET /static/css/home.css HTTP/1.1" 304
+
+
+### HTTP Status Codes:
+- **200 (OK):** Everything is working fine. ✅  
+- **302 (Found):** Temporary redirection to another URL.  
+- **304 (Not Modified):** Resource hasn’t changed since the last request.  
+- **400 (Bad Request):** The server couldn’t understand the request (e.g., invalid syntax).  
+- **401 (Unauthorized):** Authentication failed or is required.  
+- **404 (Not Found):** The requested resource doesn’t exist.  
+- **500 (Internal Server Error):** Something went wrong on the server.  
+These codes help identify issues in your app's requests and responses. 😊
+
+  
