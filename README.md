@@ -127,10 +127,13 @@ The homepage provides options to edit or remove items if mistakes are made:
 5. **Sale:**  
    - Stores sale details with timestamps.
 
-**Document for DB Plan:**  
+**Document for DB Plan:** 
 # Handwritten Notes
 
-![Handwritten Notes Preview](https://drive.google.com/uc?id=1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL)
+Here is the embedded preview of the handwritten notes:
+
+<iframe src="https://drive.google.com/file/d/1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL/preview" width="100%" height="600"></iframe>
+
 
 ---
 
