@@ -8,110 +8,129 @@ To run the application, use the following commands:
 ./env/Scripts/activate
 python app.py
 ```
-run this command to run the application
- ./env/Scripts/activate
-   python app.py
+The application will run on port 5000. You can access it at http://localhost:5000.
 
-It will run in the port of 5000 link http://localhost:5000
-here i use the mysql db
+This application uses MySQL as the database.
 
-sign up and login page
-screenshot24 link - [https://drive.google.com/file/d/1vgINmbq0x3dQ3Oa0tSVLllN3JbUF4SZp/view?usp=sharing]
-screenshot 22 - [https://drive.google.com/file/d/1qj_RogBHb1soFGsuLtgIJSVxYUClLjfO/view?usp=sharing]
-Note the access code to login, without access code it cant be login
+### Features
+Authentication: Sign-Up and Login
+The authentication process is handled by authentication.py.
+Key functionalities include:
+Sign-Up:
+Ensures the email is unique using check_email.
+Displays the following flash messages:
+flash("Signup successful!", "success")
+flash("Please remember your permanent access code {id}", "info")
+Login:
+Verifies the email, password, and access code.
+Flash messages:
+flash("Invalid Password or Access Code", "error")
+flash("Please register", "danger")
+Note:
+The access code is generated using id_generate() by summing values in the email and company name.
+The access code is prefixed with "NK" (e.g., NK11025, where NK stands for "Namma Kadai").
 
-the authentication.py handles the sign up and login management 
-it manages as signup
-if you already login person try to register or not using the check_email 
-if not it show flash message
-       flash("Signup successful!.", "success")
-      flash(f"Please remember your permanent access code {id}", "info")
-for login mamages as
-check if the person register or not
-and correctly entered the access code, email, password or not 
-it show the flash message as 
-flash("Invalid Password or access code","error")
-flash("Please register it","danger")
+Screenshots:
+![screenshot24](https://drive.google.com/file/d/1vgINmbq0x3dQ3Oa0tSVLllN3JbUF4SZp/view?usp=sharing)
+![screenshot22](https://drive.google.com/file/d/1qj_RogBHb1soFGsuLtgIJSVxYUClLjfO/view?usp=sharing)
 
-the access code will be generate by using the id_generate() by summing the values in email and company name also the email should be unique
-with prefix common as "NK" - Eg. (NK11025) where NK - Namma Kaddai
+Home Page
+The home page allows users to add balance for investment.
 
-homepage 
-screenshot25 - https://drive.google.com/file/d/1fpmUcBWTzA2MevYVeEm2P6_1K6RfqyKZ/view?usp=sharing
-screenshot 26 - https://drive.google.com/file/d/1U6eLpxjegc0Ds1UzsocbwO_tSQLcjtdR/view?usp=sharing
+Managed by app.py and stored in the Balance Table (MySQL).
+Flash message: flash("Balance is added successfully!", "success")
+Screenshots:
 
-in home page there will be add balance for investment it handle by app.py and store in Balance Table in MySQL DB
-and displays the flash message as flash("Balance is added successfully!","success")
+Purchase Page
+The purchase page allows users to add items for purchase.
+Users need to enter the item name, quantity, and rate per item.
+This functionality is handled by purchase.py.
 
-purchase
-screenshot27 https://drive.google.com/file/d/1IIdOmtDeODfF8mM6Y33UWVU3lFF72FyV/view?usp=sharing
-screenshot 28 https://drive.google.com/file/d/1Dxe4bSFDKrdgJ0WxlOhc9UDvgswVVFPt/view?usp=sharing
-in purchase page you can add the item for purchase and you need to enter the item name quantity and rate for one item 
-these logic are manage by the purchase.py
-it handles like
-the qunatity and rate should not be negative
-if main balance goes below zero it show flash message as
-flash("Your balance is Zero","warning")
+Validations:
+Quantity and rate cannot be negative.
+If the balance goes below zero, a warning is displayed:
+flash("Your balance is Zero", "warning")
+The system allows merchants to purchase items even if the balance is negative, ensuring merchant-friendly functionality.
 
-even if the balance goto below the merchant can purchase item because the main objective of this application to be merchant friendly there will be loss or gain but all are need to
-tracked so even if the balance is negative it allows to purchase more item
-example in bank also there will be negative balance amount it also entered like wise same concept follows here
+Screenshots:
 
-sale page
-screenshot 30 https://drive.google.com/file/d/1YDnIiKQhII0O7MksRjJwQ4A-VxTjprME/view?usp=sharing
-screenshot 31 https://drive.google.com/file/d/1JDr9_yavJ8qTzG0FWh9KsW7f4_I-4poe/view?usp=sharing
+Sale Page
+The sale page lists all purchased items. Users can:
 
-in sale page it will list all the purchases item and using check box you can select the item and sale that by enter the rate and quantity these will handled by sale.py
-it manages to sell by each item we can sale it by the whole item by just click the checkbox of item 
-this logic contains the dictornary of these item make store in list using that fetching the item details
-here before saleing also check it in the item list and purchases list or not
-also it need to enter the qunatity and above zero
-also if they entered above the purchased limit  it show the flash message
-if all verified it will sale and show flash message as successfully sale
+Select items using checkboxes.
+Enter the rate and quantity for sale.
+Key features:
 
-history
-screenshot - https://drive.google.com/file/d/1UQWNfpeRPB9hIQFd26hC7JNtutdxSmFl/view?usp=sharing
-here it show the purchase and sale history it directly show the transaction details and that will be handled by app.py for list_history() from the purchase and sale table
+Validates that items exist in the purchased list.
+Ensures the quantity is above zero and doesn’t exceed purchased limits.
+If valid, completes the sale and displays:
+flash("Successfully sold!", "success")
+Screenshots:
 
-in home page you can also see the edit/remove option if you did any mistakenly purchase you can use this option to change the rate and quantity will be updated in item table
-and balance also changes these will handle by crud.py
-if you click delete option it will ask the alert to delete confirm then it will be delted from the item table and balance also will get incremented
+History Page
+The history page displays purchase and sale transaction details.
+This functionality is managed by list_history() in app.py.
 
-there will helper.py this file handles the balance updation on every task of edit, delete, purchase and sale these will be tracked in balance table 
+Screenshot:
 
-DB Design 
-created DB name as NammaKadai
+Edit and Remove Options
+The home page includes options to edit or remove items:
 
-Created table as 
-CompanyDetails - store the company name, mail id and password, access code it helps for authentication.py for manageing login and signup here the password is stored in encrypted form;
-Item - It store the item only the purchaseing item with corresponding company id who login here the company id is foreign key store secured data;
-Balance - It track the every changes in balance helps to helper.py using that it track P,I,S,CRI,CRD,D;
-P - Purchase amount
-I - Invested amount
-S - Saled amount
-CRI - edited the rate but it increase from the previous one
-CRD -  edited the rate but it decrease from the previous one
-D - removed from the item
-Purchase - Stores the purchases item with the time stamp, quantity rate and amount will be calculated itself by amount  = qty * rate;
-Sale -  Stores the sale item with the time stamp, quantity rate and amount will be calculated itself by amount  = qty * rate;; 
+Edit: Updates item rate and quantity in the Item Table.
+Balance changes are tracked.
+Remove: Deletes the item from the table and increments the balance.
+These features are managed by crud.py.
 
-Document to know more my DB plan hand written notes it may be difficult to understand my hand writing soon I will attach a designed database
-- document drive link[https://drive.google.com/file/d/1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL/view?usp=sharing]
+Helper Functions
+helper.py manages balance updates for tasks like:
 
-  By runing my application if you will see in terminal many command running
-like this
- "POST /auth/signup HTTP/1.1" 302 -
- "GET / HTTP/1.1" 200 -
- "GET /static/css/login.css HTTP/1.1" 304 -
- "GET /static/css/home.css HTTP/1.1" 304 -
+Edit
+Delete
+Purchase
+Sale
+Balance changes are tracked in the Balance Table.
 
-these show as request and response about of HTTPS
+Database Design
+The application uses a MySQL database named NammaKadai.
 
-- **200 (OK):** Everything is working fine. ✅  
-- **302 (Found):** Temporary redirection to another URL.  
-- **304 (Not Modified):** Resource hasn’t changed since the last request.  
-- **400 (Bad Request):** The server couldn’t understand the request (e.g., invalid syntax).  
-- **401 (Unauthorized):** Authentication failed or is required.  
-- **404 (Not Found):** The requested resource doesn’t exist.  
-- **500 (Internal Server Error):** Something went wrong on the server.  
-These codes help identify issues in your app's requests and responses. 😊
+Tables:
+CompanyDetails:
+
+Stores company name, email, password (encrypted), and access code.
+Used for authentication.
+Item:
+
+Stores purchased items linked to a company (foreign key).
+Balance:
+
+Tracks balance changes with codes:
+P: Purchase
+I: Invested
+S: Sale
+CRI: Rate increased during edit
+CRD: Rate decreased during edit
+D: Item removed
+Purchase:
+
+Stores purchase details (timestamp, quantity, rate, amount).
+Sale:
+
+Stores sale details (timestamp, quantity, rate, amount).
+Handwritten Database Design:
+
+Understanding Terminal Logs
+During execution, the terminal logs HTTP requests and responses, like:
+
+POST /auth/signup HTTP/1.1" 302 -
+GET / HTTP/1.1" 200 -
+GET /static/css/login.css HTTP/1.1" 304 -
+HTTP Status Codes:
+200 (OK): Request was successful. ✅
+302 (Found): Temporary redirection.
+304 (Not Modified): Cached resource unchanged.
+400 (Bad Request): Invalid request syntax.
+401 (Unauthorized): Authentication failed.
+404 (Not Found): Resource doesn’t exist.
+500 (Internal Server Error): Server-side issue.
+These logs are helpful for debugging and ensuring proper app functionality. 
+ 
