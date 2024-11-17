@@ -73,9 +73,9 @@ On the sale page:
 ---
 
 ## History Page
-# Handwritten Notes
+# Handwritten Notes PDF to Download
 
-![Handwritten Notes Preview](https://drive.google.com/uc?id=1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL)
+![Handwritten Notes PDF](https://drive.google.com/file/d/1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL/view?usp=drive_link)
 
 
 ## Edit/Remove Options
