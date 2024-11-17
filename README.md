@@ -1,3 +1,13 @@
+# Namma Kadai Application
+
+## Running the Application
+
+To run the application, use the following commands:
+
+```bash
+./env/Scripts/activate
+python app.py
+
 run this command to run the application
  ./env/Scripts/activate
    python app.py
