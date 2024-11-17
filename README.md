@@ -158,6 +158,5 @@ Sample logs while running the application:
 - **401 (Unauthorized):** Authentication failed or is required.  
 - **404 (Not Found):** The requested resource doesn’t exist.  
 - **500 (Internal Server Error):** Something went wrong on the server.  
-These codes help identify issues in your app's requests and responses. 😊
-
+These codes help identify issues in app requests and responses. 
   
