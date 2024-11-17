@@ -128,7 +128,9 @@ The homepage provides options to edit or remove items if mistakes are made:
    - Stores sale details with timestamps.
 
 **Document for DB Plan:**  
-[Handwritten Notes](https://drive.google.com/uc?id=1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL)
+# Handwritten Notes
+
+![Handwritten Notes Preview](https://drive.google.com/uc?id=1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL)
 
 ---
 
