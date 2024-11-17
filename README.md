@@ -1,5 +1,10 @@
 # Application Overview
 
+```bash
+./env/Scripts/activate
+python app.py
+```
+
 It will run on the port `5000` at [http://localhost:5000](http://localhost:5000).  
 Here, I use MySQL as the database.
 
