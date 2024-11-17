@@ -129,7 +129,6 @@ The homepage provides options to edit or remove items if mistakes are made:
 **Document for DB Plan:** 
 # Handwritten Notes
 
-Here is the embedded preview of the handwritten notes:
 A document containing details about my database plan is available in handwritten notes. Please note that my handwriting might be difficult to understand. I will soon attach a properly designed database version for better clarity.
 
 ![Handwritten Notes PDF](https://drive.google.com/file/d/1e2NODWadoSpB-w7epCHex0ZmCU4v3YJL/view?usp=drive_link)
