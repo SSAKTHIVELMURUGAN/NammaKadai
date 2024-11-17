@@ -31,8 +31,8 @@ The access code is generated using id_generate() by summing values in the email 
 The access code is prefixed with "NK" (e.g., NK11025, where NK stands for "Namma Kadai").
 
 Screenshots:
-![screenshot24](https://drive.google.com/file/d/1vgINmbq0x3dQ3Oa0tSVLllN3JbUF4SZp/view?usp=sharing)
-![screenshot22](https://drive.google.com/file/d/1qj_RogBHb1soFGsuLtgIJSVxYUClLjfO/view?usp=sharing)
+![screenshot24](https://drive.google.com/file/d/1vgINmbq0x3dQ3Oa0tSVLllN3JbUF4SZp/view)
+![screenshot22](https://drive.google.com/file/d/1qj_RogBHb1soFGsuLtgIJSVxYUClLjfO/view?usp=drive_link)
 
 Home Page
 The home page allows users to add balance for investment.
