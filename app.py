@@ -71,7 +71,6 @@ def list_history():
         return render_template("history.html",purchase_list=purchase_list,sale_list=sale_list)
     
 
-#calculate profit and loss
 
 if __name__ == '__main__':
     app.run(debug=True)
